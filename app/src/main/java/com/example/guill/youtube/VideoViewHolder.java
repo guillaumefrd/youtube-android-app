@@ -7,19 +7,19 @@ import android.widget.TextView;
 
 public class VideoViewHolder extends RecyclerView.ViewHolder {
     private TextView title;
-    private TextView description;
+    private TextView channel;
     private ImageView imageView;
 
     public VideoViewHolder(View itemView) {
         super(itemView);
         title = (TextView) itemView.findViewById(R.id.title);
-        description = (TextView) itemView.findViewById(R.id.description);
+        channel = (TextView) itemView.findViewById(R.id.channel);
         imageView = (ImageView) itemView.findViewById(R.id.imageView);
     }
 
     public void bind(Item item) {
         title.setText(item.getSnippet().getTitle());
-        description.setText(item.getSnippet().getDescription());
+        channel.setText(item.getSnippet().getChannelTitle());
         new DownloadImageTask(imageView)
                 .execute(item.getSnippet().getThumbnails().getHigh().getUrl());
     }

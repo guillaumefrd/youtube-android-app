@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         videos = new ArrayList<Item>();
         initializeRecyclerView();
         initializeAdapter(videos);
+        youtubeAPICall();
 
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
@@ -61,6 +62,31 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         recyclerView.setAdapter(adapter);
     }
 
+    private void youtubeAPICall() {
+        EditText searchBox = findViewById(R.id.searchBox);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://www.googleapis.com/youtube/v3/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        YoutubeAPI youtubeAPI = retrofit.create(YoutubeAPI.class);
+        Call<SOAnswersResponse> call = youtubeAPI.getAnswers(key, part, searchBox.getText().toString(), "video", 10);
+        call.enqueue(new Callback<SOAnswersResponse>() {
+            @Override
+            public void onResponse(Call<SOAnswersResponse> call, Response<SOAnswersResponse> response) {
+                videos = response.body().getItems();
+                adapter.getVideos().clear();
+                adapter.getVideos().addAll(videos);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<SOAnswersResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
     @Override
     public boolean onKey(View view, int keyCode, KeyEvent event) {
         if (keyCode == EditorInfo.IME_ACTION_SEARCH ||
@@ -70,28 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
 
             if (!event.isShiftPressed()) {
 
-                EditText searchBox = findViewById(R.id.searchBox);
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("https://www.googleapis.com/youtube/v3/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-
-                YoutubeAPI youtubeAPI = retrofit.create(YoutubeAPI.class);
-                Call<SOAnswersResponse> call = youtubeAPI.getAnswers(key, part, searchBox.getText().toString(), "video", 6);
-                call.enqueue(new Callback<SOAnswersResponse>() {
-                    @Override
-                    public void onResponse(Call<SOAnswersResponse> call, Response<SOAnswersResponse> response) {
-                        videos = response.body().getItems();
-                        adapter.getVideos().clear();
-                        adapter.getVideos().addAll(videos);
-                        adapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onFailure(Call<SOAnswersResponse> call, Throwable t) {
-
-                    }
-                });
+                youtubeAPICall();
                 return true;
             }
 
