@@ -4,11 +4,11 @@
 
 The goal was to create an **Android application** using the [YouTube Data API](https://developers.google.com/youtube/v3/getting-started).
 
-The user can search YouTube videos. He will get a list of videos that will be display in a `RecyclerView`.
+### Features
 
-Then, he can click on those videos to display a more detailed `view` about the video. 
+- **Search YouTube videos:** you can make queries with the `search box`, a list of videos will be displayed in a `RecyclerView` using `CardView`.
 
-Of course, he can watch it thanks to the [YouTube Android Player API](https://developers.google.com/youtube/android/player/).
+- **Display the videos:** click on the video to display a more detailed `view` about it, where you will be able to watch the video thanks to the [YouTube Android Player API](https://developers.google.com/youtube/android/player/).
 
 ### Overview 
 
