@@ -33,8 +33,9 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/imageView"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/primary_text_light"/>
 
         <TextView
             android:id="@+id/channel"
@@ -44,7 +45,7 @@
             android:layout_below="@id/title"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:textColor="#5b8eff"/>
+            android:textColor= "@android:color/tertiary_text_light"/>
 
 
     </RelativeLayout>
