@@ -1,4 +1,4 @@
-package com.example.guill.youtube;
+package com.example.guill.youtube.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

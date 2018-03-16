@@ -1,4 +1,6 @@
-package com.example.guill.youtube;
+package com.example.guill.youtube.interfaces;
+
+import com.example.guill.youtube.models.SOAnswersResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -6,7 +8,6 @@ import retrofit2.http.Query;
 
 
 public interface YoutubeAPI {
-
     @GET("search/")
     Call<SOAnswersResponse> getAnswers(@Query("key") String key,
                                        @Query("part") String part,
@@ -14,5 +15,4 @@ public interface YoutubeAPI {
                                        @Query("type") String type,
                                        @Query("maxResults") int maxResult
                                        );
-
 }

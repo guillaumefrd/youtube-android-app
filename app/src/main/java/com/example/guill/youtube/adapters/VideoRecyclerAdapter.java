@@ -1,8 +1,12 @@
-package com.example.guill.youtube;
+package com.example.guill.youtube.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import com.example.guill.youtube.R;
+import com.example.guill.youtube.viewholders.VideoViewHolder;
+import com.example.guill.youtube.models.Item;
 
 import java.util.List;
 

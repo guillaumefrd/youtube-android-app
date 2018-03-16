@@ -1,9 +1,13 @@
-package com.example.guill.youtube;
+package com.example.guill.youtube.viewholders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.guill.youtube.R;
+import com.example.guill.youtube.models.Item;
+import com.squareup.picasso.Picasso;
 
 public class VideoViewHolder extends RecyclerView.ViewHolder {
     private TextView title;
@@ -12,16 +16,14 @@ public class VideoViewHolder extends RecyclerView.ViewHolder {
 
     public VideoViewHolder(View itemView) {
         super(itemView);
-        title = (TextView) itemView.findViewById(R.id.title);
-        channel = (TextView) itemView.findViewById(R.id.channel);
-        imageView = (ImageView) itemView.findViewById(R.id.imageView);
+        title = itemView.findViewById(R.id.title);
+        channel = itemView.findViewById(R.id.channel);
+        imageView = itemView.findViewById(R.id.imageView);
     }
 
     public void bind(Item item) {
         title.setText(item.getSnippet().getTitle());
         channel.setText(item.getSnippet().getChannelTitle());
-        new DownloadImageTask(imageView)
-                .execute(item.getSnippet().getThumbnails().getHigh().getUrl());
+        Picasso.get().load(item.getSnippet().getThumbnails().getHigh().getUrl()).into(imageView);
     }
-
 }

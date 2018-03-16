@@ -1,10 +1,13 @@
-package com.example.guill.youtube;
+package com.example.guill.youtube.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.guill.youtube.models.Item;
+import com.example.guill.youtube.R;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -12,17 +15,20 @@ import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
 
 public class VideoDetailedActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
-
+//public class VideoDetailedActivity extends AppCompatActivity {
     private String key = "AIzaSyCU-Al-NuszNKX9QRiDiJ9E7BI_7Aa-MXk";
     private static final int RECOVERY_REQUEST = 1;
     private YouTubePlayerView youTubeView;
     private Item video;
-
+    private AppCompatActivity appCompatActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_detailed);
+
+        appCompatActivity = new AppCompatActivity();
+
         video = getIntent().getExtras().getParcelable("VIDEO");
 
         TextView title = findViewById(R.id.title);

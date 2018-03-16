@@ -1,4 +1,4 @@
-package com.example.guill.youtube;
+package com.example.guill.youtube.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -19,6 +19,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
+
+import com.example.guill.youtube.models.Item;
+import com.example.guill.youtube.R;
+import com.example.guill.youtube.RecyclerItemClickListener;
+import com.example.guill.youtube.models.SOAnswersResponse;
+import com.example.guill.youtube.adapters.VideoRecyclerAdapter;
+import com.example.guill.youtube.interfaces.YoutubeAPI;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -194,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         YoutubeAPI youtubeAPI = retrofit.create(YoutubeAPI.class);
-        Call<SOAnswersResponse> call = youtubeAPI.getAnswers(key, part, query, "video", 10);
+        Call<SOAnswersResponse> call = youtubeAPI.getAnswers(key, part, query, "video", 20);
         call.enqueue(new Callback<SOAnswersResponse>() {
             @Override
             public void onResponse(Call<SOAnswersResponse> call, Response<SOAnswersResponse> response) {
